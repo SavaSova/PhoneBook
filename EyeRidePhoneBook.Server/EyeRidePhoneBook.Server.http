@@ -1,0 +1,6 @@
+@EyeRidePhoneBook.Server_HostAddress = http://localhost:5107
+
+GET {{EyeRidePhoneBook.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

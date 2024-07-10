@@ -1,0 +1,59 @@
+<button type="button" class="btn btn-outline-secondary" (click)="openModal(content)">Add contact</button>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Add Contact</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="row">
+        <div class="col">
+          <div ngbDropdown class="d-inline-block">
+            <button type="button" class="btn btn-outline-secondary" id="dropdownBasic1" ngbDropdownToggle>
+              {{ selectedType }}
+            </button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <button ngbDropdownItem (click)="setContactType('Person')">Person</button>
+              <button ngbDropdownItem (click)="setContactType('Public')">Public</button>
+              <button ngbDropdownItem (click)="setContactType('Private')">Private</button>
+            </div>
+          </div>
+        </div>        
+      </div>      
+      <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" class="form-control" id="name" [(ngModel)]="newContact.name" name="name">
+      </div>
+      <div class="form-group">
+          <label for="phoneNumber">Phone Number</label>
+          <input type="text" class="form-control" id="phoneNumber" [(ngModel)]="newContact.phoneNumber" name="phoneNumber">
+      </div>
+      <div class="form-group">
+        <label for="textComments">Text Comments</label>
+        <input type="text" class="form-control" id="textComments" [(ngModel)]="newContact.textComments" name="textComments">
+      </div>
+      <div class="form-group">
+        <label for="fieldOfActivity">Field of Activity</label>
+        <input type="text" class="form-control" id="fieldOfActivity" [(ngModel)]="newContact.fieldOfActivity" name="fieldOfActivity">
+      </div>
+      <div class="form-group">
+          <label for="tin">TIN</label>
+          <input type="text" class="form-control" id="tin" [(ngModel)]="newContact.tin" name="tin">
+      </div>
+      <div class="form-group">
+        <label for="industry">Industry</label>
+        <input type="text" class="form-control" id="industry" [(ngModel)]="newContact.industry" name="industry">
+      </div>
+      <div class="form-group">
+          <label for="ein">EIN</label>
+          <input type="text" class="form-control" id="ein" [(ngModel)]="newContact.ein" name="ein">
+      </div>            
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.close('Save click')">Save</button>
+    <button type="button" class="btn btn-outline-secondary" (click)="modal.close('Close click')">Close</button>
+  </div>
+</ng-template>
+
