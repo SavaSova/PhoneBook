@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\buildMultiTargeting\EyeRidePhoneBook.Server.props" />
-</Project>
