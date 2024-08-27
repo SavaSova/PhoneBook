@@ -1,0 +1,6 @@
+@EyeRidePhoneBook.Server_HostAddress = https://localhost:7164
+
+GET {{EyeRidePhoneBook.Server_HostAddress}}/api/Contacts
+Accept: application/json
+
+###

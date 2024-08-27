@@ -1,0 +1,93 @@
+<h1 class="display-1">Phone Book</h1>
+
+<div class="position-static">
+  <div class="form-check form-check-inline">
+    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="person" [(ngModel)]="showPerson" (change)="filterContacts()">
+    <label class="form-check-label" for="inlineCheckbox1">Person</label>
+  </div>
+  <div class="form-check form-check-inline">
+    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" name="public" [(ngModel)]="showPublic" (change)="filterContacts()">
+    <label class="form-check-label" for="inlineCheckbox2">Public</label>
+  </div>
+  <div class="form-check form-check-inline">
+    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" name="private" [(ngModel)]="showPrivate" (change)="filterContacts()">
+    <label class="form-check-label" for="inlineCheckbox3">Private</label>
+  </div>
+
+  <app-add-contact-button></app-add-contact-button>
+</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Contact Type</th>
+      <th scope="col">Name</th>
+      <th scope="col">Phone number</th>
+      <th scope="col">Text Comments</th>
+
+      <th scope="col">Field of activity</th>
+      <th scope="col">TIN</th>
+
+      <th scope="col">Industry</th>
+      <th scope="col">EIN</th>
+
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    @for (contact of filteredPhoneBook; track contact){
+    @if (showPerson && contact.contactType === 'Person'){
+    <tr>
+      <td>{{ contact.contactType }}</td>
+      <td>{{ contact.name }}</td>
+      <td>{{ contact.phoneNumber }}</td>
+      <td>{{ contact.textComments }}</td>
+
+      <td>{{ contact.fieldOfActivity }}</td>
+      <td>{{ contact.tin }}</td>
+
+      <td>{{ contact.industry }}</td>
+      <td>{{ contact.ein }}</td>
+      
+      <td><app-update-contact-button [contactId]="contact.id"></app-update-contact-button></td>
+      <td><app-delete-contact-button [contactId]="contact.id"></app-delete-contact-button></td>
+    </tr>
+    }
+    @if (showPublic && contact.contactType === 'Public'){
+    <tr>
+      <td>{{ contact.contactType }}</td>
+      <td>{{ contact.name }}</td>
+      <td>{{ contact.phoneNumber }}</td>
+      <td>{{ contact.textComments }}</td>
+
+      <td>{{ contact.fieldOfActivity }}</td>
+      <td>{{ contact.tin }}</td>
+
+      <td>{{ contact.industry }}</td>
+      <td>{{ contact.ein }}</td>
+
+      <td><app-update-contact-button [contactId]="contact.id"></app-update-contact-button></td>
+      <td><app-delete-contact-button [contactId]="contact.id"></app-delete-contact-button></td>
+    </tr>
+    }
+    @if (showPrivate && contact.contactType === 'Private'){
+    <tr>
+      <td>{{ contact.contactType }}</td>
+      <td>{{ contact.name }}</td>
+      <td>{{ contact.phoneNumber }}</td>
+      <td>{{ contact.textComments }}</td>
+
+      <td>{{ contact.fieldOfActivity }}</td>
+      <td>{{ contact.tin }}</td>
+
+      <td>{{ contact.industry }}</td>
+      <td>{{ contact.ein }}</td>
+
+      <td><app-update-contact-button [contactId]="contact.id"></app-update-contact-button></td>
+      <td><app-delete-contact-button [contactId]="contact.id"></app-delete-contact-button></td>
+    </tr>
+    }
+    }
+  </tbody>
+</table>

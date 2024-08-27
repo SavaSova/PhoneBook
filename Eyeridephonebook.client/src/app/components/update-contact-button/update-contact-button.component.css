@@ -1,0 +1,19 @@
+#put-button {
+    margin: 1px auto !important;
+    display: flex !important;
+    padding: 5px !important;  
+}
+
+.has-error .form-control {
+    border-color: #dc3545;
+}
+
+.is-invalid {
+    border-color: #dc3545;
+}
+
+.invalid-feedback {
+    color: #dc3545;
+    display: block;
+    font-size: 0.875em;
+}
