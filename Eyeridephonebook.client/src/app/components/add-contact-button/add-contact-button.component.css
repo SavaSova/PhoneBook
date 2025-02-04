@@ -1,0 +1,13 @@
+.has-error .form-control {
+    border-color: #dc3545;
+}
+
+.is-invalid {
+    border-color: #dc3545;
+}
+
+.invalid-feedback {
+    color: #dc3545;
+    display: block;
+    font-size: 0.875em;
+}

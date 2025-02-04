@@ -1,0 +1,18 @@
+<button type="button" class="btn btn-outline-secondary" id="delete-button" (click)="openVerticallyCentered(content)">
+    <img src="../../assets/icons/close-icon.svg" />
+</button>  
+
+<ng-template #content let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title">Delete contact</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+		<p>Are you sure you want to delete selected records?</p>
+	</div>
+	<div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="deleteContact()" (click)="modal.close('Ok click')">Yes</button>
+	<button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">No</button>
+	</div>
+</ng-template>
+

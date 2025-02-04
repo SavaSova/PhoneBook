@@ -1,0 +1,163 @@
+<button type="button" class="btn btn-outline-secondary" (click)="openModal(content)">Add</button>
+
+<ng-template #content let-modal>  
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Add Contact</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="contactValidationService.contactValidation">
+      <div class="row">
+        <div class="col">
+          <div ngbDropdown class="d-inline-block">
+            <button type="button" class="btn btn-outline-secondary" id="dropdownBasic1" ngbDropdownToggle>
+              {{ selectedType }}
+            </button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <button ngbDropdownItem (click)="setContactType('Person')">Person</button>
+              <button ngbDropdownItem (click)="setContactType('Public')">Public</button>
+              <button ngbDropdownItem (click)="setContactType('Private')">Private</button>
+            </div>
+          </div>
+        </div>        
+      </div>      
+      <div class="form-group" [ngClass]="{'has-error': contactValidationService.isFieldInvalid('name')}">
+        <label for="name">Name</label>
+        <input 
+          type="text" 
+          class="form-control" 
+          id="name" 
+          [(ngModel)]="newContact.name" 
+          name="name" 
+          formControlName="name"
+          [ngClass]="{'is-invalid': contactValidationService.isFieldInvalid('name')}"
+        >
+        <div *ngIf="contactValidationService.isFieldInvalid('name')" class="invalid-feedback">
+          <div *ngIf="contactValidationService.contactValidation.get('name')?.errors?.['required']">
+            Name is required.
+          </div>
+        </div>
+      </div>
+      
+      <div class="form-group" [ngClass]="{'has-error': contactValidationService.isFieldInvalid('phoneNumber')}">
+        <label for="phoneNumber">Phone Number</label>
+        <input 
+          type="text" 
+          class="form-control" 
+          id="phoneNumber" 
+          [(ngModel)]="newContact.phoneNumber" 
+          name="phoneNumber" 
+          formControlName="phoneNumber"
+          [ngClass]="{'is-invalid': contactValidationService.isFieldInvalid('phoneNumber')}"
+        >
+        <div *ngIf="contactValidationService.isFieldInvalid('phoneNumber')" class="invalid-feedback">
+          <div *ngIf="contactValidationService.contactValidation.get('phoneNumber')?.errors?.['required']">
+            Phone Number is required.
+          </div>          
+          <div *ngIf="contactValidationService.contactValidation.get('phoneNumber')?.errors?.['minlength']">
+            Phone Number must be at least 5 characters.
+          </div>
+          <div *ngIf="contactValidationService.contactValidation.get('phoneNumber')?.errors?.['maxlength']">
+            Phone Number must be at most 15 characters.
+          </div>
+        </div>
+      </div>
+      
+      <div class="form-group" [ngClass]="{'has-error': contactValidationService.isFieldInvalid('textComments')}">
+        <label for="textComments">Text Comments</label>
+        <input 
+          type="text" 
+          class="form-control" 
+          id="textComments" 
+          [(ngModel)]="newContact.textComments" 
+          name="textComments" 
+          formControlName="textComments"
+          [ngClass]="{'is-invalid': contactValidationService.isFieldInvalid('textComments')}"
+        >
+        <div *ngIf="contactValidationService.isFieldInvalid('textComments')" class="invalid-feedback">
+        </div>
+      </div>
+      
+      @if (selectedType === "Public") {
+        <div class="form-group" [ngClass]="{'has-error': contactValidationService.isFieldInvalid('fieldOfActivity')}">
+          <label for="fieldOfActivity">Field of Activity</label>
+          <input 
+            type="text" 
+            class="form-control" 
+            id="fieldOfActivity" 
+            [(ngModel)]="newContact.fieldOfActivity" 
+            name="fieldOfActivity" 
+            formControlName="fieldOfActivity"
+            [ngClass]="{'is-invalid': contactValidationService.isFieldInvalid('fieldOfActivity')}"
+          >
+          <div *ngIf="contactValidationService.isFieldInvalid('fieldOfActivity')" class="invalid-feedback">
+            <div *ngIf="contactValidationService.contactValidation.get('fieldOfActivity')?.errors?.['required']">
+              Field of Activity is required.
+            </div>
+          </div>
+        </div>
+      
+        <div class="form-group" [ngClass]="{'has-error': contactValidationService.isFieldInvalid('tin')}">
+          <label for="tin">TIN</label>
+          <input 
+            type="text" 
+            class="form-control" 
+            id="tin" 
+            [(ngModel)]="newContact.tin" 
+            name="tin" 
+            formControlName="tin"
+            [ngClass]="{'is-invalid': contactValidationService.isFieldInvalid('tin')}"
+          >
+          <div *ngIf="contactValidationService.isFieldInvalid('tin')" class="invalid-feedback">
+            <div *ngIf="contactValidationService.contactValidation.get('tin')?.errors?.['required']">
+              TIN is required.
+            </div>
+          </div>
+        </div>
+      }
+      
+      @if (selectedType === "Private") {
+        <div class="form-group" [ngClass]="{'has-error': contactValidationService.isFieldInvalid('industry')}">
+          <label for="industry">Industry</label>
+          <input 
+            type="text" 
+            class="form-control" 
+            id="industry" 
+            [(ngModel)]="newContact.industry" 
+            name="industry" 
+            formControlName="industry"
+            [ngClass]="{'is-invalid': contactValidationService.isFieldInvalid('industry')}"
+          >
+          <div *ngIf="contactValidationService.isFieldInvalid('industry')" class="invalid-feedback">
+            <div *ngIf="contactValidationService.contactValidation.get('industry')?.errors?.['required']">
+              Industry is required.
+            </div>
+          </div>
+        </div>
+      
+        <div class="form-group" [ngClass]="{'has-error': contactValidationService.isFieldInvalid('ein')}">
+          <label for="ein">EIN</label>
+          <input 
+            type="text" 
+            class="form-control" 
+            id="ein" 
+            [(ngModel)]="newContact.ein" 
+            name="ein" 
+            formControlName="ein"
+            [ngClass]="{'is-invalid': contactValidationService.isFieldInvalid('ein')}"
+          >
+          <div *ngIf="contactValidationService.isFieldInvalid('ein')" class="invalid-feedback">
+            <div *ngIf="contactValidationService.contactValidation.get('ein')?.errors?.['required']">
+              EIN is required.
+            </div>
+          </div>
+        </div> 
+      }      
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.close('Save click')" [disabled]="!contactValidationService.contactValidation.valid">Save changes</button>
+    <button type="button" class="btn btn-outline-secondary" (click)="modal.close('Close click')">Cancel</button>
+  </div>
+</ng-template>
+

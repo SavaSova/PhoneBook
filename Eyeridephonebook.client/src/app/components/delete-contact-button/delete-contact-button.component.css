@@ -1,0 +1,10 @@
+#delete-button {
+  margin: 1px auto !important;
+  display: flex !important;
+  padding: 5px !important;  
+}
+  
+img {
+  max-width: 18px;
+  max-height: 18px;
+}
